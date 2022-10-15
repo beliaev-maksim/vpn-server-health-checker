@@ -1,0 +1,15 @@
+[Unit]
+Description=service to check VPN helath
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=beliaev
+WorkingDirectory=/home/beliaev/status_server
+ExecStart=/home/beliaev/status_server/venv/bin/python3.8 -m uvicorn checker:app --host=0.0.0.0
+
+[Install]
+WantedBy=multi-user.target
